@@ -1,0 +1,487 @@
+@import '../../themes/variable';
+@import '../../base/components/component';
+
+//HEADER
+.header {
+    background-color: $bg-none ;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 120px;
+        .logo {
+            @media only screen and (max-width: 768px) {
+                display: none;
+            }
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .navbar {
+            .active {
+                position: relative;
+
+                &::before {
+                    height: 12px;
+                    width: 12px;
+                    border-radius: $border-radius1;
+                    content: "";
+                    background-color: $text-c1-pink;
+                    position: absolute;
+                    bottom: -35px;
+                    left: 37%;
+                    opacity: 1;
+                }
+            }
+
+            a {
+                text-decoration: none;
+                margin-left: 40px;
+                @include text($text-base, $text-semibold, $text-c1-dark);
+                position: relative;
+
+                &::before {
+                    height: 12px;
+                    width: 12px;
+                    border-radius: $border-radius1;
+                    content: "";
+                    background-color: $text-c1-pink;
+                    position: absolute;
+                    left: 37%;
+                    opacity: 0;
+                    top: 38px;
+                }
+
+                &:hover {
+                    &::before {
+                        opacity: 1;
+                        transition: .8s;
+                    }
+                }
+            }
+        }
+
+        .connect {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            @media only screen and (max-width: 768px) {
+                display: none;
+            }
+            .btn-phone {
+                margin-right: 20px;
+                @include button($text-1xs, $text-regular, $text-c1-light, $bg-c1-primary, $padding-button, $border-button, $border-radius, $bg-c1-light, $text-c1-pink);
+
+                &:hover {
+                    animation: button .6s;
+                }
+
+                &:hover a {
+                    color: $text-c1-pink ;
+                }
+
+                i {}
+
+                a {
+                    text-decoration: none;
+                    color: $text-c1-light ;
+                }
+            }
+
+            .connect-social {
+                i {
+                    margin-left: 10px;
+                    transition: .6s;
+
+                    &:hover {
+                        color: $text-c1-pink;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sticky {
+    background-color: #fff;
+    height: 70px;
+}
+
+.sticky .logo img {
+    display: none;
+}
+
+.sticky .scroll {
+    height: 100%;
+}
+
+.sticky .scroll .navbar a::before {
+    top: 34px;
+}
+
+//CAROUSEL
+
+.carousel {
+    height: 100vh;
+    background-image: url('../../../img/yellow_top_wave_01.png');
+    background-repeat: no-repeat;
+    background-position: left top;
+    background-size: 100%;
+    position: relative;
+    overflow: hidden;
+    height: 100vh;
+
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        @media only screen and (max-width: 768px) {
+            align-items: flex-start;
+        }
+        .main-left {
+            position: relative;
+            top: -90px;
+            animation: fadeinLeft .5s;
+            @media only screen and (max-width: 768px) {
+                top: 180px;
+            }
+            h2 {
+                @include text($text-2xl, $text-regular, $text-c1-pink);
+            }
+
+            p {
+                @include text($text-6xl, $text-bold, $text-c1-dark);
+                margin-top: 15px;
+                letter-spacing: 2px;
+                @media only screen and (max-width: 768px) {
+                    font-size: $text-3xl;
+                    margin-top: 30px;
+                }
+            }
+        }
+
+        .main-right {
+            img {
+                width: 100%;
+                position: relative;
+                top: 140px;
+                animation: fadeIn 1.5s;
+                @media only screen and (max-width: 768px) {
+                    top: 80px;
+                }
+            }
+        }
+    }
+
+    .carousel-footer {
+        img {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+
+        }
+    }
+}
+
+//INTERMEDIATE
+
+.intermediate {
+    background-image: url('../../../img/Violet_bottom_left_wave.png');
+    background-size: cover;
+    background-position: -150px;
+
+    .container {
+        .row1 {
+            display: flex;
+            flex-wrap: wrap;
+
+            .col1 {
+                @for $i from 0 to 8 {
+                    .item-#{$i+1} {
+                        animation: fadeIn 1.2s*($i+1);
+                    }
+                }
+
+                width: calc(100%/4);
+                padding: 15px 20px;
+                @media only screen and (max-width: 768px) {
+                    width: 100%;
+                }
+                .card {
+                    transition: all .7s;
+                    border-radius: 10px 10px 10px 10px;
+                    &:hover {
+                        box-shadow: 1px 15px 16px -7px rgba(0, 0, 0, 0.71);
+                        -webkit-box-shadow: 1px 15px 16px -7px rgba(0, 0, 0, 0.71);
+                        -moz-box-shadow: 1px 15px 16px -7px rgba(0, 0, 0, 0.71);
+                    }
+
+                    .zoom {
+
+                        overflow: hidden;
+                        border-radius: 10px 10px 0 0;
+
+                        img {
+                            transition: transform 0.5s ease;
+                            opacity: 1;
+                            height: auto;
+                            display: block;
+                            max-width: 100%;
+                            overflow: hidden;
+
+                            &:hover {
+                                transform: scale(1.1);
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .card-body {
+                        background-color: $bg-c1-light;
+                        border-radius: 0 0 10px 10px;
+                        text-align: center;
+                        padding: 35px 20px;
+
+                        h3 {
+                            @include text($text-base, $text-regular, $text-c1-pink);
+                        }
+
+                        p {
+                            @include text($text-3xl, $text-semibold, $text-c1-dark);
+                            padding: 15px 0;
+                        }
+
+                        span {
+                            @include text();
+                            @media only screen and (max-width: 768px) {
+                                font-size: $text-2xl;
+                             }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+// <!-- COURSE -->
+
+.courses {
+    margin-top: 100px;
+    background-image: url('../../../img/accent_bottom_wave_01\ \(1\).png');
+    background-position: left bottom;
+    background-size: cover;
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        @media only screen and (max-width: 768px) {
+           display: block;
+        }
+        .courses-left {
+            animation: fadeinLeft .5s;
+
+            img {
+                width: 100%;
+            }
+            @media only screen and (max-width: 768px) {
+                margin-bottom: 60px;
+             }
+        }
+
+        .courses-right {
+            animation: fadeIn 1.7s;
+
+            form {
+                width: 80%;
+                background-color: $bg-c1-light ;
+                padding: 60px 25px;
+                box-shadow: 1px 8px 18px -3px rgba(0, 0, 0, 0.75);
+                -webkit-box-shadow: 1px 8px 18px -3px rgba(0, 0, 0, 0.75);
+                -moz-box-shadow: 1px 8px 18px -3px rgba(0, 0, 0, 0.75);
+
+                h3 {
+                    @include text($text-4xl, $text-semibold);
+                    padding-bottom: 60px;
+                    text-align: center;
+                }
+
+                .row {
+                    .col {
+                        padding-bottom: 25px;
+                        position: relative;
+
+                        i {
+                            position: absolute;
+                            top: 0.65em;
+                            left: 1.3em;
+                            line-height: 1;
+                            color: $text-c1-pink ;
+                        }
+
+                        input {
+                            padding-left: 30px;
+                        }
+
+                        #input {
+                            padding: 7px 74% 7px 30px;
+                            border-radius: 5px;
+
+                        }
+                    }
+                }
+
+                .buttonsub {
+                    padding-top: 25px;
+
+                    .btn-submit {
+                        @include button($text-base, $text-regular, $text-c1-light, $bg-c1-primary, $padding-button, $border-button, $border-radius, $bg-c1-light, $text-c1-pink);
+                        padding: 12px 50px;
+
+                        &:hover {
+                            animation: button .6s;
+                        }
+                    }
+                }
+
+            }
+            @media only screen and (max-width: 768px) {
+                margin-top: 30px;
+                margin-left: 100px;
+             }
+        }
+    }
+
+}
+
+//FOOTER
+.footer {
+    padding-top: 80px;
+    padding-bottom: 100px;
+    background-image: url('../../../img/footer_background.jpg');
+    color: $text-c1-light;
+    background-size: cover;
+    background-position: left;
+    @media only screen and (max-width: 768px) {
+        text-align: center;
+     }
+    .container {
+        .row {
+            .col-md-3 {
+                h3 {
+                    @include text($text-3xl, $text-bold, $text-c1-light);
+                    padding-bottom: 18px;
+                }
+
+                .address {
+                    margin-bottom: 0;
+                    padding-bottom: 10px;
+
+                    i {}
+
+                    span {}
+                }
+
+                ul {
+                    li {
+                        list-style: none;
+                        // border-bottom: 1px solid rgba(0, 0, 0, .1);
+                        line-height: 1;
+                        padding: 0.9em 0;
+                        position: relative;
+
+                        a {
+                            text-decoration: none;
+                            color: $text-c1-light;
+
+                            &::before {
+                                height: 1px;
+                                width: 71px;
+                                content: "";
+                                background-color: rgba(0, 0, 0, .1);
+                                position: absolute;
+                                bottom: -3px;
+                                opacity: 1;
+                            }
+
+                        }
+                    }
+                }
+
+                .info {
+                    input {
+                        border-radius: 16px;
+                        background-color: rgb(182, 25, 132);
+                        padding: 11px 0px;
+                        width: 66%;
+                        text-align: center;
+                        margin-bottom: 5px
+                    }
+
+                    button {
+                        @include button($text-1xs, $text-semibold, $text-c1-dark, $bg-c1-light, $padding-button, $border-button, $border-radius, $bg-c1-primary, $text-c1-light);
+                        padding: 15px 57px;
+                    }
+                }
+
+                .net {
+                    i {
+                        padding-top: 18px;
+                        font-size: $text-xl;
+                    }
+                }
+                @media only screen and (max-width: 768px) {
+                    margin-bottom: 50px;
+                 }
+
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+@keyframes button {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeinLeft {
+    from {
+        transform: translateX(-250px);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
